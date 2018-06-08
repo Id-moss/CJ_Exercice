@@ -1,0 +1,15 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="p-3 row text-light rounded bg-dark">
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<h3 class="display-4 font-italic"></h3>
+		<p class="lead my-3">{{ user.firstname }}	{{ user.lastname }}</p>
+		<p class="lead my-3">Email :	{{ user.email }}</p>
+		<p class="lead my-3">Phone :	{{ user.phone }}</p>
+		<p class="lead my-3">Adress :	{{ user.adress }}</p>
+	</div>
+
+	<div>
+		<p class="lead my-3"><a href="{{ path('fos_user_profile_edit') }}">Edit</a></p>
+	</div>
+</div>

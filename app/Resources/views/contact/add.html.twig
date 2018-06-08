@@ -1,0 +1,14 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+
+{% block fos_user_content %}
+
+	<div class="container">
+		{{ form_start(createForm) }}
+			
+			{{ form_widget(createForm) }}
+
+		{{ form_end(createForm) }}
+	</div>
+
+{% endblock %}

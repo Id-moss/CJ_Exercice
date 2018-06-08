@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: canaljob
+    database_user: root
+    database_password: root
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: moss@test.eu
+    mailer_password: null
+    secret: 9bbe168969b2847eec651eec4b86f997c83126fa

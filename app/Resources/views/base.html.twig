@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://getbootstrap.com/docs/4.0/examples/navbar-static/navbar-top.css" rel="stylesheet">
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <a class="navbar-brand" href="#">Top navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+        <!--
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        -->
+          {% if app.session.get('username') %}
+            {% block menu %}
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('listProducts') }}">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/products/listById/{{ app.session.get('id') }}">My Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ path('listProducts') }}">Categories</a>
+              </li>
+            {% endblock %}
+            {% if app.session.get('admin') %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ path('listUsers') }}">Users<span class="sr-only"></span></a>
+            </li>
+            {% endif %}
+            <li class="nav-item active">
+              <a class="nav-link" href="/users/{{ app.session.get('id') }}">My profile<span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ path('logout') }}">Logout<span class="sr-only"></span></a>
+            </li>
+          {% else %}
+            {% block logmenu %}
+            {% endblock %}
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+        {% block welcome %}
+          {% for label, messages in app.flashes %}
+              {% for message in messages %}
+                  <div class="alert alert-{{ label }}">
+                      {{ message }}
+                  </div>
+              {% endfor %}
+          {% endfor %}
+        {% endblock %}
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

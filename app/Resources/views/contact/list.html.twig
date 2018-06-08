@@ -1,0 +1,28 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+
+{% block fos_user_content %}
+
+	<span><a href="{{ path('exportAction') }}">Export</a></span> |
+	<span><a href="{{ path('importAction') }}">Import</a></span>
+	<div class="container">
+		<ul class="list-group">
+			{% if contacts %}
+			
+				{% for contact in contacts %}
+					<li class="list-group-item">
+						<a href="/contacts/{{contact.id}}">{{ contact.firstname }} {{ contact.lastname }}</a>Tel : {{ contact.phone }} Email : {{ contact.email }}
+					</li>
+				{% endfor %}
+			
+			{% else %}
+			
+				<li class="list-group-item">No contacts</li>
+			
+			{% endif %}
+
+			<li class="list-group-item"><a href="{{ path('createContact') }}">Add new contact?</a></li>
+  		</ul>
+	</div>
+
+{% endblock %}
